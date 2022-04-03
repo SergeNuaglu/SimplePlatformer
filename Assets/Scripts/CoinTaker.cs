@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinTaking : MonoBehaviour
+public class CoinTaker : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<PlayerController>(out PlayerController player))
+        if (collision.TryGetComponent<PlayerMover>(out PlayerMover player))
         {
             Destroy(this.gameObject);
         }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 
-public class PlayerController : MonoBehaviour
+public class PlayerMover : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
     [SerializeField] private float _jumpPower;
@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private const string _gunDownParameter = "GunDown";
     private const string _runParameter = "isRun";
     private const string _deathParameter = "Death";
+    private const string _gunDownButtonName = "GunDown";
     private Vector2 _velocity;
     private Vector3 _leftTurn = new Vector3(0, 180, 0);
     private Rigidbody2D _rigidbody;
@@ -54,12 +55,12 @@ public class PlayerController : MonoBehaviour
             _isGround = false;
         }
 
-        if (Input.GetButtonDown("GunDown") && _isGround)
+        if (Input.GetButtonDown(_gunDownButtonName) && _isGround)
         {
             _animator.SetBool(_gunDownParameter, true);
         }
 
-        if (Input.GetButtonUp("GunDown") && _isGround)
+        if (Input.GetButtonUp(_gunDownButtonName) && _isGround)
         {
             _animator.SetBool(_gunDownParameter, false);
         }

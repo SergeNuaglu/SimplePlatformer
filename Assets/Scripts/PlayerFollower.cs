@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class CameraFollowing : MonoBehaviour
+public class PlayerFollower : MonoBehaviour
 {
     [SerializeField] private Transform _targetOfFollowing;
     [SerializeField] private float _movementSpeed;

@@ -13,8 +13,9 @@ public class EnemyMovement : MonoBehaviour
 
     private int _currentPoint;
     private int _startPointNumber = 0;
-    private PlayerController _player;
+    private PlayerMover _player;
     private Coroutine _killplayerJob;
+    private WaitForSeconds _waitForSeconds = new WaitForSeconds(1.5f);
 
     private void Update()
     {
@@ -40,7 +41,7 @@ public class EnemyMovement : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        if (collision.TryGetComponent<PlayerController>(out _player))
+        if (collision.TryGetComponent<PlayerMover>(out _player))
         {
             _killplayerJob = StartCoroutine(KillPlayer());
         }
@@ -48,13 +49,11 @@ public class EnemyMovement : MonoBehaviour
 
     private IEnumerator KillPlayer()
     {
-        float timeBeforeReload = 1.5f;
-
         while (_player != null)
         {
             _player.Die();
             Destroy(_player);
-            yield return new WaitForSeconds(timeBeforeReload);
+            yield return _waitForSeconds;
         }
 
         if (_player == null)
